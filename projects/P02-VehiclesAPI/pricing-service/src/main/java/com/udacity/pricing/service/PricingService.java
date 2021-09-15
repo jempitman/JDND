@@ -19,7 +19,7 @@ public class PricingService {
      */
     private static final Map<Long, Price> PRICES = LongStream
             .range(1, 20)
-            .mapToObj(i -> new Price("ZAR", randomPrice(), i))
+            .mapToObj(i -> new Price(i, "ZAR", randomPrice(), i))
             .collect(Collectors.toMap(Price::getVehicleId, p -> p));
 
     /**
@@ -30,11 +30,19 @@ public class PricingService {
      */
     public static Price getPrice(Long vehicleId) throws PriceException {
 
+        /**
+         * No longer needed since the service has been converted to REST,
+         **/
+        /*
         if (!PRICES.containsKey(vehicleId)) {
             throw new PriceException("Cannot find price for Vehicle " + vehicleId);
         }
 
         return PRICES.get(vehicleId);
+
+         */
+
+        return new Price();
     }
 
     /**
