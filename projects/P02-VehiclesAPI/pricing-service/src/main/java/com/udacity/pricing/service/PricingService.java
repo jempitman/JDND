@@ -30,19 +30,17 @@ public class PricingService {
      */
     public static Price getPrice(Long vehicleId) throws PriceException {
 
-        /**
-         * No longer needed since the service has been converted to REST,
-         **/
-        /*
+
+
         if (!PRICES.containsKey(vehicleId)) {
             throw new PriceException("Cannot find price for Vehicle " + vehicleId);
         }
 
         return PRICES.get(vehicleId);
 
-         */
 
-        return new Price();
+
+       // return new Price();
     }
 
     /**
@@ -51,7 +49,7 @@ public class PricingService {
      */
     private static BigDecimal randomPrice() {
         return new BigDecimal(ThreadLocalRandom.current().nextDouble(1, 5))
-                .multiply(new BigDecimal(5000d)).setScale(2, RoundingMode.HALF_UP);
+                .multiply(new BigDecimal(50000d)).setScale(2, RoundingMode.HALF_UP);
     }
 
 }

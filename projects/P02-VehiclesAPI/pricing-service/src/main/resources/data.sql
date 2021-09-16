@@ -1,8 +1,8 @@
-INSERT INTO Price (id, currency, price, vehicle_id) VALUES (1, 'ZAR', 100000.25, 1);
-INSERT INTO Price (id, currency, price, vehicle_id) VALUES (2, 'ZAR', 200000.25, 2);
-INSERT INTO Price (id, currency, price, vehicle_id) VALUES (3, 'ZAR', 300000.25, 3);
-INSERT INTO Price (id, currency, price, vehicle_id) VALUES (4, 'ZAR', 400000.25, 4);
-INSERT INTO Price (id, currency, price, vehicle_id) VALUES (5, 'ZAR', 500000.25, 5);
+INSERT INTO price (id, currency, price, vehicle_id) VALUES (1, 'ZAR', 100000.25, 1);
+INSERT INTO price (id, currency, price, vehicle_id) VALUES (2, 'ZAR', 200000.25, 2);
+INSERT INTO price (id, currency, price, vehicle_id) VALUES (3, 'ZAR', 300000.25, 3);
+INSERT INTO price (id, currency, price, vehicle_id) VALUES (4, 'ZAR', 400000.25, 4);
+INSERT INTO price (id, currency, price, vehicle_id) VALUES (5, 'ZAR', 500000.25, 5);
 INSERT INTO price (id, currency, price, vehicle_Id) VALUES (6, 'ZAR', 599000.09, 6);
 INSERT INTO price (id, currency, price, vehicle_Id) VALUES (7, 'ZAR', 376400.38, 7);
 INSERT INTO price (id, currency, price, vehicle_Id) VALUES (8, 'ZAR', 1602000.3, 8);
