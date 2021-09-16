@@ -31,6 +31,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -146,9 +147,25 @@ public class CarControllerTest {
                 .andExpect(status().isCreated());
 
         andExpect(status().isNoContent());
-//        ResultActions resultActions = mvc.perform(
-//                delete(new URI("/cars/delete/1")))
-//                .andExpect(status().isNoContent());
+    }
+
+    @Test
+    public void updateCar() throws Exception{
+        Car car = getCar();
+
+        Details carDetails = car.getDetails();
+        carDetails.setExternalColor("red");
+
+        car.setDetails(carDetails);
+        car.setCondition(Condition.USED);
+
+        mvc.perform(
+                put(new URI("/cars/update/1"))
+                .content(json.write(car).getJson())
+                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                .accept(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(status().isOk());
+
     }
 
     /**
