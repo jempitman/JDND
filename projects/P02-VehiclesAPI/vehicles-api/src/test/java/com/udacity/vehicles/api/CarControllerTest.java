@@ -97,7 +97,7 @@ public class CarControllerTest {
          */
 
         mvc.perform(
-                get(new URI("/cars"))
+                get(new URI("/cars/list"))
                         .accept(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8));

@@ -56,12 +56,6 @@ public class CarService {
          *   Remove the below code as part of your implementation.
          */
 
-        if (this.repository.findById(id).isPresent()){
-
-        } else{
-            throw new CarNotFoundException();
-        }
-
         Car car = this.repository.findById(id).orElseThrow(CarNotFoundException::new);
 
 
