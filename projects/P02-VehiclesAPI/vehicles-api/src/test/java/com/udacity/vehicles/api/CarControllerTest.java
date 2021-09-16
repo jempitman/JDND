@@ -20,7 +20,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.test.web.servlet.ResultMatcher;
 
 import java.net.URI;
 import java.util.Collections;
@@ -29,7 +29,8 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -144,9 +145,10 @@ public class CarControllerTest {
                         .accept(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(status().isCreated());
 
-        ResultActions resultActions = mvc.perform(
-                delete(new URI("/cars/delete/1")))
-                .andExpect(status().isNoContent());
+        andExpect(status().isNoContent());
+//        ResultActions resultActions = mvc.perform(
+//                delete(new URI("/cars/delete/1")))
+//                .andExpect(status().isNoContent());
     }
 
     /**
@@ -171,5 +173,9 @@ public class CarControllerTest {
         car.setDetails(details);
         car.setCondition(Condition.USED);
         return car;
+    }
+
+    //ResultMatcher helper Method
+    private void andExpect(ResultMatcher resultMatcher){
     }
 }
