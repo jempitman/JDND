@@ -94,7 +94,6 @@ public class CarControllerTest {
      * Tests if the read operation appropriately returns a list of vehicles.
      * @throws Exception if the read operation of the vehicle list fails
      */
-    //TODO complete
 
     @Test
     public void listCars() throws Exception {
