@@ -29,9 +29,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -75,9 +73,15 @@ public class CarControllerTest {
      * Tests for successful creation of new car in the system
      * @throws Exception when car creation fails in the system
      */
+    //TODO complete
+
     @Test
     public void createCar() throws Exception {
+
+        //fetch car details
         Car car = getCar();
+
+        //perform createCar operation
         mvc.perform(
                 post(new URI("/cars/save"))
                         .content(json.write(car).getJson())
@@ -90,6 +94,8 @@ public class CarControllerTest {
      * Tests if the read operation appropriately returns a list of vehicles.
      * @throws Exception if the read operation of the vehicle list fails
      */
+    //TODO complete
+
     @Test
     public void listCars() throws Exception {
         /**
@@ -97,14 +103,21 @@ public class CarControllerTest {
          *   the whole list of vehicles. This should utilize the car from `getCar()`
          *   below (the vehicle will be the first in the list).
          */
+        //TODO complete
 
+        //fetch car details
+        Car car = getCar();
+
+        //create car for listCars test
+        saveCar(car);
+
+        //perform listCar test
         mvc.perform(
                 get(new URI("/cars/list"))
                         .accept(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8));
         verify(carService,times(1)).list();
-
     }
 
     /**
@@ -117,7 +130,15 @@ public class CarControllerTest {
          * TODO: Add a test to check that the `get` method works by calling
          *   a vehicle by ID. This should utilize the car from `getCar()` below.
          */
+        //TODO Complete
 
+        //fetch car details
+        Car car = getCar();
+
+        //create car for findById test
+        saveCar(car);
+
+        //perform findById operation and verify returned statement
         mvc.perform(
                 get(new URI("/cars/get/1"))
                         .accept(MediaType.APPLICATION_JSON_UTF8))
@@ -138,29 +159,39 @@ public class CarControllerTest {
          *   when the `delete` method is called from the Car Controller. This
          *   should utilize the car from `getCar()` below.
          */
-        Car car = getCar();
-        mvc.perform(
-                post(new URI("/cars/save"))
-                        .content(json.write(car).getJson())
-                        .contentType(MediaType.APPLICATION_JSON_UTF8)
-                        .accept(MediaType.APPLICATION_JSON_UTF8))
-                .andExpect(status().isCreated());
+        // TODO Complete
 
+        //fetch car details
+        Car car = getCar();
+
+        //create car to be deleted
+        saveCar(car);
+
+        //perform deletion operation and verify that car has been deleted
+        mvc.perform(
+                delete("/cars/delete").param("vehicleId", "1")
+                .contentType(MediaType.APPLICATION_JSON_UTF8));
         andExpect(status().isNoContent());
     }
 
     @Test
     public void updateCar() throws Exception{
+        //fetch car details
         Car car = getCar();
 
+        //create car to be edited
+        saveCar(car);
+
+        //update car details
         Details carDetails = car.getDetails();
         carDetails.setExternalColor("red");
 
         car.setDetails(carDetails);
         car.setCondition(Condition.USED);
 
+        //perform editCar operation
         mvc.perform(
-                put(new URI("/cars/update/1"))
+                put(new URI("/cars/edit/1"))
                 .content(json.write(car).getJson())
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
                 .accept(MediaType.APPLICATION_JSON_UTF8))
@@ -194,5 +225,16 @@ public class CarControllerTest {
 
     //ResultMatcher helper Method
     private void andExpect(ResultMatcher resultMatcher){
+    }
+
+    //create car helper Method
+    private void saveCar(Car car) throws Exception{
+
+        mvc.perform(
+                post(new URI("/cars/save"))
+                        .content(json.write(car).getJson())
+                        .contentType(MediaType.APPLICATION_JSON_UTF8)
+                        .accept(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(status().isCreated());
     }
 }

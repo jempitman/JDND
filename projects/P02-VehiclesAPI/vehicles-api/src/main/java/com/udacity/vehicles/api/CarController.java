@@ -95,7 +95,7 @@ class CarController {
      * @param car The updated information about the related vehicle.
      * @return response that the vehicle was updated in the system
      */
-    @PutMapping("/update/{id}")
+    @PutMapping("/edit/{id}")
     ResponseEntity<?> put(@PathVariable Long id, @Valid @RequestBody Car car) {
         /**
          * TODO: Set the id of the input car object to the `id` input.
