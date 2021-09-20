@@ -64,6 +64,7 @@ class CarController {
          * TODO: Use the `assembler` on that car and return the resulting output.
          *   Update the first line as part of the above implementing.
          */
+        //TODO complete
 
         Car currentVehicle = carService.findById(id);
         return assembler.toResource(currentVehicle);
@@ -82,6 +83,8 @@ class CarController {
          * TODO: Use the `assembler` on that saved car and return as part of the response.
          *   Update the first line as part of the above implementing.
          */
+        //TODO complete
+
         Car currentVehicle = carService.save(car);
 
         Resource<Car> resource = assembler.toResource(currentVehicle);
@@ -103,7 +106,10 @@ class CarController {
          * TODO: Use the `assembler` on that updated car and return as part of the response.
          *   Update the first line as part of the above implementing.
          */
+        //TODO complete
+
         car.setId(id);
+        carService.save(car);
         Car currentVehicle = carService.findById(id);
         Resource<Car> resource = assembler.toResource(currentVehicle);
         return ResponseEntity.ok(resource);
@@ -119,6 +125,8 @@ class CarController {
         /**
          * TODO: Use the Car Service to delete the requested vehicle.
          */
+        //TODO complete
+
         carService.delete(id);
         return ResponseEntity.noContent().build();
     }
